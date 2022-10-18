@@ -15,8 +15,11 @@ module.exports = (sequelize) => {
 		difficulty:{
 			type: DataTypes.INTEGER,
 			validate: {
-				min: 1,
-				max: 5
+				validator(value){
+					if(value > 5 || value < 1){
+						throw new Error("El rango de dificultad es de 1 a 5")
+					}
+				}
 			}
 		},
 		duration: {
