@@ -1,0 +1,14 @@
+.plantilla {
+	background-color: #E8CFCF;
+	display: flex;
+	flex-direction: row;
+	width: 40%;
+	height: 30%;
+	margin: 20px;
+	border-radius: 10px;
+	border-color: #792828;
+}
+
+.nombres{
+	margin: 20px;
+}
