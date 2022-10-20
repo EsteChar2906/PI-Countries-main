@@ -8,7 +8,7 @@ const Country = ({name, id, flag_image, continent}) =>{
 		        <h1>Country: {name} - {id}</h1>
 		        <h2>Continent: {continent}</h2>
 		    </div>
-		    <div>
+		    <div className={s.image}>
 		        <img src={flag_image} alt="Bandera" />
 		    </div>
 		</div>

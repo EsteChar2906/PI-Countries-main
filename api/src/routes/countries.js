@@ -9,7 +9,7 @@ router.get("/", async(req, res) => {
 	try {
         if(!name){
             const getAllCountries = await Country.findAll({
-                attributes: ["name", "flag_image"]
+                attributes: ["id", "name", "flag_image", "continent"]
             });
             res.status(200).send(getAllCountries);
         } else{

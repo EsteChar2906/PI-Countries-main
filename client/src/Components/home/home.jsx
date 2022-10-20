@@ -3,6 +3,7 @@ import { getCountries } from '../../Redux/actions.js';
 import Countries from '../countries/countries.jsx';
 import NavBar from '../navBar/navBar.jsx'
 import { useDispatch } from 'react-redux';
+import s from './home.module.css'
 
 const Home = () => {
 
@@ -14,12 +15,12 @@ const Home = () => {
 
 	return (
 
-		<div>
+		<div className={s.fondoo}>
 		    <div>
 		        <NavBar />
 		    </div>
 
-		    <div >
+		    <div>
 		        <Countries />
 		    </div>
 		</div>

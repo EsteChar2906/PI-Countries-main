@@ -9,7 +9,7 @@ async function dataBase(){
         return {
             name: el.name.common,
             id: el.cca3,
-            flag_image: el.flags[1],
+            flag_image: el.flags[0],
             continent: el.continents[0],
             capital: el.capital? el.capital[0] : "not capital",
             subregion: el.subregion,

@@ -3,8 +3,8 @@ import axios from 'axios';
 export const GET_COUNTRIES = "GET_COUNTRIES";
 export const GET_DETAIL_COUNTRY = "GET_DETAIL_COUNTRY";
 export const GET_COUNTRY_NAME = "GET_COUNTRY_NAME";
-export const FIL_BY_CONTINENT = "FILTER_BY_CONTINENT";
-export const FIL_BY_ACTIVITIES = "FILTER_BY_ACTIVITIES";
+export const FIL_BY_CONTINENT = "FIL_BY_CONTINENT";
+export const FIL_BY_ACTIVITIES = "FIL_BY_ACTIVITIES";
 export const ORD_ALPHA_AZ = "ORD_ALPHA_AZ";
 export const ORD_ALPHA_ZA = "ORD_ALPHA_ZA";
 export const ORD_POP_CRE = "ORD_POP_CRE";
@@ -41,14 +41,50 @@ export const getCountryName = (name) => {
 	};
 };
 
-export const ordAlphaAZ = () => {};
+export const filByContinent = (continent) => {
+	return {
+		type: FIL_BY_CONTINENT,
+		payload: continent
+	};
+};
 
-export const ordAlphaZA = () => {};
+export const filByActivities = (activity) => {
+	return {
+		type: FIL_BY_ACTIVITIES,
+		payload: activity
+	};
+};
 
-export const ordByCre = () => {};
+export const ordAlphaAZ = () => {
+	return {
+		type: ORD_ALPHA_AZ
+	};
+};
 
-export const ordPopDec = () => {};
+export const ordAlphaZA = () => {
+	return {
+		type: ORD_ALPHA_ZA
+	};
+};
 
-export const filPopContinent = () => {};
+export const ordPopCre = () => {
+	return {
+		type: ORD_POP_CRE
+	};
+};
 
-export const createActivity = () => {};
+export const ordPopDec = () => {
+	return {
+		type: ORD_POP_DCR
+	};
+};
+
+export const createActivity = (activity) => {
+	return async function(dispatch){
+		const create = await axios.post('http://localhost:3001/activities', activity);
+		dispatch({
+			type: CREATE_ACTIVITY,
+			payload: create.data
+		})
+	}
+};

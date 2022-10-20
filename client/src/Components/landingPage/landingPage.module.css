@@ -1,7 +1,7 @@
 body {
 	background-image: url("C:\Users\usuario\Desktop\Desarollo-web\Carrera Desarrolo web\PI Countries\PI-Countries-main\client\src\Imagen de fondo\Portada.jpg");
 	background-size: 100%;
-	background-repeat: no-repeat;
+	background-attachment: scroll;
 }
 
 .title {

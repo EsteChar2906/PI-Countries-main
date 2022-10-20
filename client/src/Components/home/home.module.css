@@ -1,0 +1,10 @@
+.fondo{
+	display: flex;
+	flex-direction: row;
+}
+
+
+.fondoo{
+	display: flex;
+	flex-direction: column;
+}
