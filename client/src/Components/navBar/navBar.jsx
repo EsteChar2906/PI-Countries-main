@@ -1,121 +1,113 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { connect, useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import SearchBar from '../searchBar/searchBar.jsx'
 import {
-	getCountries,
+	getActivity,
 	filByContinent,
-	filByActivities,
-	ordAlphaAZ,
-	ordAlphaZA,
-	ordPopCre,
-	ordPopDec
+	filByActivity,
+	ordAlpha,
+	ordByPopul
 } from '../../Redux/actions.js'
 
 
-const NavBar = (props) => {
+const NavBar = () => {
 
-	const [ catalog, setCatalog ] = useState('');
-	const [ continent, setContinent ] = useState('');
-	const [ activity, setActivity ] = useState('');
+	const allActivities = useSelector(state => state.allActivities);
 
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		if(continent) {
-			props.getCountries();
-			if(continent !== 'all continents'){
-				setTimeout(() => {
-					dispatch(props.filByContinent(continent));
-				}, 1000)
-			}
-		}
-	}, [continent])
+		dispatch(filByActivity());
+	}, [dispatch]);
 
-	useEffect(() => {
-		if(catalog === 'disorderly'){
-			props.getCountries();
-		} 
-		else if(catalog === 'A-Z'){
-			props.ordAlphaAZ();
-		}
-		else if(catalog === 'Z-A'){
-			props.ordAlphaZA();
-		}
-		else if(catalog === 'Pop lower-higher'){
-			props.ordPopCre();
-		}
-		else if(catalog === 'Pop higher-lower'){
-			props.ordPopDec();
-		}
-	}, [catalog])
-
-	const activityHandler = (e) => {
+	const alphaHandler = (e) =>{
 		e.preventDefault();
-
-		setActivity(e.target.value);
+		dispatch(ordAlpha(e.target.value));
 	};
 
-	const searchActivityHandler = (e) = > {
+	const continentHandler = (e) =>{
 		e.preventDefault();
+		dispatch(filByContinent(e.target.value));
+	};
 
-		getCountries();
-		setTimeout(() => {
-			dispatch(filByActivities(activity))
-		}, 1000);
+	const populationHandler = (e) =>{
+		e.preventDefault();
+		dispatch(ordByPopul(e.target.value));
+		console.log(e.target.value)
+	};
 
+	const activityHandler = (e) =>{
+		e.preventDefault();
+		dispatch(filByActivity(e.target.value));
+	};
 
-		setActivity("");
-	}
-
-
+	useEffect(() => {
+		dispatch(getActivity())
+	}, [dispatch]);
 
 	return(
 		<div>
 		 	<Link to="/">
 		 	Pagina Principal
-		 	<Link>
+		 	</Link>
 
 		 	<div>
-		 	<label for="catalog">Catalog by</label>
+		 	<label htmlFor="population">Ordenar por poblacion</label>
 		 	<select 
-		 	id="catalog"
-		 	name="catalog"
-		 	onChange={(e) => setCatalog(e.target.value)}>
-		 	<option value="disorderly">All</option>
-		 	<option value="A-Z">A - Z</option>
-		 	<option value="Z-A">Z - A</option>
-		 	<option value="Pop lower-higher">Pop lower-higher</option>
-		 	<option value="Pop higher-lower">Pop higher-lower</option>
+		 	id="population"
+		 	name="population"
+		 	onChange={populationHandler}>
+		 	<option value="disorderly" key="disorderly">Disorderly</option>
+		 	<option value="menor" key="menor">Pop lower-higher</option>
+		 	<option value="mayor" key="mayor">Pop higher-lower</option>
 		 	</select>
-
-		 	<SearchBar />
-
 		 	</div>
+
 		 	<div>
-		 	<label for="continent">Catalog by Continent</label>
+		 	<label htmlFor="alpha">Ordenar alfabeticamente</label>
+		 	<select 
+		 	name="alpha" 
+		 	id="alpha"
+		 	onChange={alphaHandler}>
+		 	<option value="All" >All</option>
+		 	<option value="A-Z" key='A-Z'>A - Z</option>
+		 	<option value="Z-A" key='Z-A'>Z - A</option>
+		 	</select>
+		 	</div>
+
+		 	<div>
+		 	<SearchBar />
+		 	</div>
+
+		 	<div>
+		 	<label htmlFor="continent">Catalog by Continent</label>
 		 	<select 
 		 	id="continent"
 		 	name="continent"
-		 	onChange={(e) => setContinent(e.target.value)}>
-		 	<option value="disorderly">All</option>
-		 	<option value="Africa">Africa</option>
-		 	<option value="Americas">Americas</option>
-		 	<option value="Asia">Asia</option>
-		 	<option value="Europa">Europa</option>
-		 	<option value="Oceania">Oceania</option>
+		 	onChange={continentHandler}>
+		 	<option value='all continents' key='all continents'>All continents</option>
+		 	<option value="Africa" key='Africa'>Africa</option>
+		 	<option value="Antarctica" key='Antarctica'>Antarctica</option>
+		 	<option value="Asia" key='Asia'>Asia</option>
+		 	<option value="Europe" key='Europe'>Europe</option>
+		 	<option value="North America" key="North America">North America</option>
+		 	<option value="Oceania" key='Oceania'>Oceania</option>
+		 	<option value="South America" key='South America'>South America</option>
 		 	</select>
 		 	</div>
 
 		 	<div>
-		 	<form onSubmit={() => searchActivityHandler()}>
-		 	<input
-		 	type="text"
-		 	value={activity}
-		 	placeholder="Enter the name of the activity."
-		 	onChange={() => activityHandler()}
-		 	/>
-		 	<button type="submit">Search</button> 
+		 	<label htmlFor="activity">Select activity</label>
+		 	<select 
+		 	name="activity" 
+		 	id="activity"
+		 	onChange={activityHandler}>
+		 	<option value="all activities" key='all activities'>All activities</option>
+		 	{allActivities.map((a) => (
+		 		<option value={a.name} key={a.name}>{a.name}</option>
+		 		))} 
+		 	</select>
 		 	</div>
 
 		 	<div>
@@ -127,23 +119,5 @@ const NavBar = (props) => {
 		); 
 };
 
-const mapDispatchToProps = (dispatch) => {
-	return {
-		getCountries: () => dispatch(getCountries());
-		filByContinent: () => dispatch(filByContinent());
-		filByActivities: () => dispatch(filByActivities());
-		ordAlphaAZ: () => dispatch(ordAlphaAZ());
-		ordAlphaZA: () => dispatch(ordAlphaZA());
-		ordPopCre: () => dispatch(ordPopCre()());
-		ordPopDec: () => dispatch(ordPopDec());
 
-	};
-};
-
-const mapStateToProps = (state) => {
-	return {
-		countries: state.countries,
-	};
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(NavBar);
+export default NavBar;

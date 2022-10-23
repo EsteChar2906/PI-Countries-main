@@ -1,39 +1,26 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import { getCountryName } from '../../Redux/actions.js';
 
 
 const SearchBar = () => {
 
-	const [ name, setName ] = useState("");
-
 	const dispatch = useDispatch();
 
-	const onClikcHandler = () => {
-		dispatch(getCountryName(name))
-	};
-
-	const nameHandler = (e) => {
-		setName(e.target.value);
+	const handlerInput = (e) => {
+		e.preventDefault();
+		dispatch(getCountryName(e.target.value));
 	};
 
 	return (
 
 		<div>
-		
 		  <input
 		  type="text"
 		  placeholder="Name of Country"
-		  name="name"
-		  autocomplete="off"
-		  onChange={(e) => nameHandler(e)}
+		  name="input"
+		  onChange={handlerInput}
 		  />
-
-		 <div>
-		   <button onClick={() => onClikcHandler()}>
-		   Search
-		   </button>
-		 </div>
 
 		</div>
 

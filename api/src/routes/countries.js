@@ -9,16 +9,19 @@ router.get("/", async(req, res) => {
 	try {
         if(!name){
             const getAllCountries = await Country.findAll({
-                attributes: ["id", "name", "flag_image", "continent"]
-            });
+                attributes: ["id", "name", "flag_image", "continent", "population"],
+                include: Tourist_Activities
+            }
+        );
             res.status(200).send(getAllCountries);
         } else{
             const minuscula = name.toLowerCase();
             const nameToSearch = minuscula.charAt(0).toUpperCase() + minuscula.slice(1);
-            const getCountryByName = await Country.findOne({
+            const getCountryByName = await Country.findAll({
                 where: {
                     name: nameToSearch
-                }
+                },
+                include: Tourist_Activities
             });
             if(!getCountryByName){
                 res.status(400).send(`el país ${nameToSearch} no fue encontrado, verifique el nombre.`);
@@ -31,6 +34,7 @@ router.get("/", async(req, res) => {
         res.status(400).send(error.message);
     }
 });
+
 
 router.get("/:idCode", async(req, res) => {
     const { idCode } = req.params;

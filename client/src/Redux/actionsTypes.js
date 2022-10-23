@@ -1,0 +1,11 @@
+export const GET_COUNTRIES = "GET_COUNTRIES";
+export const GET_DETAIL_COUNTRY = "GET_DETAIL_COUNTRY";
+export const GET_COUNTRY_NAME = "GET_COUNTRY_NAME";
+export const GET_ACTIVITY = 'GET_ACTIVITY';
+export const FIL_BY_CONTINENT = "FIL_BY_CONTINENT";
+export const FIL_BY_ACTIVITY = "FIL_BY_ACTIVITIES";
+export const ORD_ALPHA = "ORD_ALPHA";
+export const ORD_BY_POP = "ORD_BY_POP";
+export const CREATE_ACTIVITY = "CREATE_ACTIVITY";
+export const LOADING = 'LOADING';
+export const ERROR = 'ERROR';

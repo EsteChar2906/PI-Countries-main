@@ -2,20 +2,27 @@ import {
 	GET_COUNTRIES,
 	GET_DETAIL_COUNTRY,
 	GET_COUNTRY_NAME,
+	GET_ACTIVITY,
 	FIL_BY_CONTINENT,
-	FIL_BY_ACTIVITIES, 
-	ORD_ALPHA_AZ, 
-	ORD_ALPHA_ZA, 
-	ORD_POP_CRE,
-	ORD_POP_DCR,
-	CREATE_ACTIVITY
-} from './actions.js'
+	FIL_BY_ACTIVITY, 
+	ORD_ALPHA, 
+	ORD_BY_POP,
+	CREATE_ACTIVITY,
+	LOADING,
+	ERROR,
+} from './actionsTypes.js';
 
 const initialState = {
-	countries: [],
-	countriesDetail: [],
-	countriesName: [],
-	activities: []
+	allCountries: [],
+	countryDetails: {},
+	countryByname: {},
+	FilContinents: [],
+	FilActivities: [],
+	order: [],
+	createActivity: [],
+	allActivities:[],
+	loading: false,
+	error: ''
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -23,52 +30,108 @@ const rootReducer = (state = initialState, action) => {
 		case GET_COUNTRIES:
 		return {
 			...state,
-			countries: action.payload
+			error:'',
+			allCountries: action.payload,
+			FilContinents: action.payload,
+			FilActivities: action.payload,
+			order: action.payload,
 		};
+
 		case GET_DETAIL_COUNTRY:
 		return {
 			...state,
-			countriesDetail: action.payload
+			countryDetails: action.payload,
+			loading: false
 		};
+
 		case GET_COUNTRY_NAME:
 		return {
 			...state,
-			countriesName: action.payload
+			allCountries: action.payload,
+			error: ''
 		};
+
+		case GET_ACTIVITY:
+		return{
+			...state,
+			loading:false,
+			allActivities: action.payload
+		}
+
 		case FIL_BY_CONTINENT:
+		const filterC = action.payload;
+		const continents = state.FilContinents;
+		let filByContinent;
+		if(filterC === "all continents"){
+			filByContinent = continents;
+		} else {
+			filByContinent = continents.filter((c) => c.continent === filterC)
+		}
 		return {
 			...state,
-			countries: state.countries.filter((c) => c.continent === action.payload)
+			allCountries: filByContinent
 		};
-		case FIL_BY_ACTIVITIES:
+
+		case FIL_BY_ACTIVITY:
+		const filterA = action.payload;
+		const activities = state.FilActivities;
+		let filByActivities;
+		if(filterA === 'all activities'){
+			filByActivities = activities;
+		} else{
+			filByActivities = activities.filter((c) => c.Tourist_Activities.find((a) => a.name === filterA))
+		}
 		return {
 			...state,
-			countries: state.countries.filter((c) => c.activities.some((a) => a.name === action.payload))
+			allCountries: filByActivities
 		};
-		case ORD_ALPHA_AZ:
+
+		case ORD_ALPHA:
+		const orderA = action.payload;
+		let ordAlpha = state.order;
+		if(orderA === "A-Z"){
+			ordAlpha = state.allCountries.slice().sort((a, b) => a.name.localeCompare(b.name))
+		} 
+		if(orderA === "Z-A"){
+			ordAlpha = state.allCountries.slice().sort((a, b) => b.name.localeCompare(a.name))
+		} 
 		return {
 			...state,
-			countries: state.countries.slice().sort((c1, c2) => c1.name.localeCompare(c2.name))
+			allCountries: ordAlpha 
 		};
-		case ORD_ALPHA_ZA:
+		
+		case ORD_BY_POP:
+		const orderP = action.payload;
+		let ordByPop = state.order;
+		console.log(state.allCountries)
+		if(orderP === "menor"){
+			ordByPop = state.allCountries.slice().sort((a, b) => a.population - b.population)
+		}
+		if(orderP === "mayor"){
+			ordByPop = state.allCountries.slice().sort((a, b) => b.population - a.population)
+		} 
 		return {
 			...state,
-			countries: state.countries.slice().sort((c1, c2) => c2.name.localeCompare(c1.name))
+			allCountries: ordByPop
 		};
-		case ORD_POP_CRE:
-		return {
-			...state,
-			countries: state.countries.slice().sort((c1, c2) => c1.population - c2.population)
-		};
-		case ORD_POP_DCR:
-		return {
-			...state,
-			countries: state.countries.slice().sort((c1, c2) => c2.population - c1.population)
-		};
+
 		case CREATE_ACTIVITY:
 		return {
 			...state,
-			activities: action.payload
+			createActivity: state.createActivity.push(action.payload)
+		};
+
+
+		case LOADING:
+		return {
+			...state,
+			loading: true
+		};
+
+		case ERROR:
+		return {
+			...state,
+			error: action.payload
 		}
 
 		default:

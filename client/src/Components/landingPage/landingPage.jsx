@@ -2,7 +2,7 @@ import React from 'react';
 import s from './landingPage.module.css';
 import {Link} from 'react-router-dom'
 
-const landingPage = () => {
+const LandingPage = () => {
 	return (
 		<div>
     		<div className={s.home}>
@@ -17,4 +17,4 @@ const landingPage = () => {
 		)
 }
 
-export default landingPage;
+export default LandingPage;

@@ -1,7 +1,27 @@
 const { Router } = require('express');
-const { Country, Tourist_Activities } = require('../db.js');
+const { Op } = require('sequelize')
+const { Country, Tourist_Activities, City_Tourism } = require('../db.js');
 
 const router = Router();
+
+router.get("/", async(req, res) => {
+	
+	try{
+			const allActivities = await Tourist_Activities.findAll({
+				attributes: ["name", "difficulty", "season", "duration"],
+				include: {
+					model: Country,
+					through: {
+						attributes: []
+					}}
+			});
+
+			res.status(200).send(allActivities);
+        }catch(error){
+        	res.status(400).send(error.message);
+        	console.log(error.message)
+    }
+});
 
 router.post("/", async(req, res) => {
 	const { name, difficulty, duration, season, codeCountry } = req.body;
@@ -10,43 +30,34 @@ router.post("/", async(req, res) => {
 			where: {
 				name: name
 			}
-		})
+		});
+
 		if(!name || !difficulty || !duration || !season || !codeCountry){
 			return res.status(400).send("Faltan datos");
 		} else{
 			if(!validateActivities){
-				const activity = await Tourist_Activities.create(req.body);
-
-				if(typeof codeCountry === 'array'){
-					codeCountry.forEach(async (el) => {
+				let activity = await Tourist_Activities.create({name, difficulty, duration, season});
+				await activity.setCountries(codeCountry)
+				
+					/*codeCountry.forEach(async (el) => {
 						const getByCode = await Country.findByPk(el);
-						activity.addCountry(getByCode);
-					});
-				}
-
-				const country = await Country.findByPk(codeCountry);
-				activity.addCountry(country);
-
-
+						activity.setCountry(getByCode);
+					});*/
 			} else{
-
-				const getCountries = await Country.findAll({
-					where: {
-						id: codeCountry
-					}
-				});
-
-				validateActivities.addCountry(getCountries)
+					validateActivities.setCountries(codeCountry)
 			}
 
-		}
-		const newActivities = await Tourist_Activities.findAll({
-			attributes: ["name", "season"]
-		}, 
-		{where : { code: codeCountry }
-	})
+			const countryActivity = await Tourist_Activities.findOne({
+				include: {
+					model: Country,
+					through: {
+						attributes: []
+					}},	 
+					where: {name: name}
+				}); 
 
-	res.status(200).send(newActivities)
+			res.status(200).send(countryActivity)
+		}
 	}
 	catch(error){
 		res.status(400).send(error.message);

@@ -8,12 +8,11 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       primaryKey: true,
       allowNull:false,
-      unique: "Id_Name"
       },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: "Id_Name"
+      unique: true
     },
     flag_image: {
       type: DataTypes.BLOB,
