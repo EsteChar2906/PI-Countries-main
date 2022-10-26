@@ -2,18 +2,65 @@ body {
 	background-image: url("C:\Users\usuario\Desktop\Desarollo-web\Carrera Desarrolo web\PI Countries\PI-Countries-main\client\src\Imagen de fondo\Portada.jpg");
 	background-size: 100%;
 	background-attachment: scroll;
+	letter-spacing: 1px;
 }
 
-.title {
-	color: #BBAE81;
+.henry {
+	background-image: linear-gradient(lightskyblue, lightseagreen);
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	margin-top: 240px;
+	background-color: floralwhite;
+	width: 26%;
+	height: 32px;
+	border-radius: 10px;
+	font-family: Papyrus, fantasy;
+	}
+
+.logo {
+	width: 70px;
+	height: 26px;
+	padding-left: 4px;
 }
 
 
 .home {
 	display: flex;
-	font-family: Tahoma(sans-serif);
-	margin-left: 50px;
-	margin-top: 50px;
 	flex-direction: column;
-	float: left;
+}
+
+
+.text {
+	color: darkblue;
+	margin-top: 5%;
+	margin-left: 25%;
+	margin-right: 25%;
+	padding: 0 10px 0 10px;
+	text-align: center;
+	font-size: 20px;
+	background-image: linear-gradient(to right, deepskyblue, powderblue);
+	border-radius: 40px;
+	font-family: Papyrus, fantasy;
+}
+
+.buttonHome {
+	margin-top: 3%;
+	background-color: darkslategray;
+	box-shadow: 0 7px lightgray;
+	border-radius: 10px;
+	border-style: hidden;
+	padding: 10px;
+	font-family: Papyrus, fantasy;
+
+}
+
+.buttonHome:hover{
+	padding-right: 25px;
+}
+
+.buttonHome:active{
+	background-color: darkgray;
+	box-shadow: 0 5px lightgray;
 }

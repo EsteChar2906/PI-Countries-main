@@ -1,0 +1,75 @@
+.fondo{
+	margin-left: 25%;
+	margin-right: 25%;
+	padding-bottom: 10px;
+	border-radius: 20px;
+	font-family: Papyrus, fantasy;
+	background-image: linear-gradient(chartreuse, cyan) ;
+}
+
+.title {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+}
+
+.detail{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	text-align: justify;
+	margin: 25px;
+}
+
+.activities{
+	display: flex;
+	flex-wrap: wrap;
+	text-align: justify;
+}
+
+.cardActivity{
+	background-image: linear-gradient(greenyellow, lawngreen);
+	margin: 15px;
+	padding: 10px;
+	
+}
+
+.center{
+	display: flex;
+	justify-content: center;
+}
+
+.bandera{
+	margin-top: 30px;
+	margin-right: 10px;
+}
+
+.gif {
+	border-radius: 50%;
+}
+
+.buttons{
+	background-image: linear-gradient(tomato, turquoise);
+	padding: 10px;
+	margin: 10px;
+	border-radius: 20px;
+	font-size: 15px;
+}
+
+.buttons:hover{
+	background-image: linear-gradient(turquoise, tomato);
+}
+
+.links{
+	background-image: linear-gradient(springgreen, teal);
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	margin: 0 25% 0 25%;
+	border-radius: 15px;
+}
+
+.enlace {
+	text-decoration: none;
+	font-family: Papyrus, fantasy;
+}

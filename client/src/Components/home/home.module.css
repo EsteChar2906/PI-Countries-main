@@ -1,10 +1,10 @@
-.fondo{
+.items{
 	display: flex;
-	flex-direction: row;
+	flex-direction: column
 }
 
 
-.fondoo{
+.countries{
 	display: flex;
 	flex-direction: column;
 }

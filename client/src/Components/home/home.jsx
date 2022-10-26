@@ -6,14 +6,14 @@ import s from './home.module.css'
 const Home = () => {
 
 	return (
-
-		<div className={s.fondoo}>
-		    <NavBar />
-		    <div>
-		        <Countries />
+		<div className={s.items}>
+		    <div className={s.nav}>
+		        <NavBar />
 		    </div>
+		    <div className={s.countries}>
+		        <Countries />
+		     </div>
 		</div>
-
 	);
 };
 

@@ -1,15 +1,16 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import SearchBar from '../searchBar/searchBar.jsx'
+import SearchBar from '../searchBar/searchBar.jsx';
 import {
+	getCountries,
 	getActivity,
 	filByContinent,
 	filByActivity,
 	ordAlpha,
 	ordByPopul
-} from '../../Redux/actions.js'
-
+} from '../../Redux/actions.js';
+import s from './navBar.module.css';
 
 const NavBar = () => {
 
@@ -18,6 +19,7 @@ const NavBar = () => {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
+		dispatch(getCountries())
 		dispatch(filByActivity());
 	}, [dispatch]);
 
@@ -34,7 +36,6 @@ const NavBar = () => {
 	const populationHandler = (e) =>{
 		e.preventDefault();
 		dispatch(ordByPopul(e.target.value));
-		console.log(e.target.value)
 	};
 
 	const activityHandler = (e) =>{
@@ -47,13 +48,16 @@ const NavBar = () => {
 	}, [dispatch]);
 
 	return(
-		<div>
-		 	<Link to="/">
-		 	Pagina Principal
-		 	</Link>
+		<div className={s.nav}>
+		<div className={s.busqueda}>
+		    <div className={s.inicio}>
+		 	    <Link className={s.link} to="/">Inicio</Link>
+		 	</div>
 
-		 	<div>
-		 	<label htmlFor="population">Ordenar por poblacion</label>
+		 	<div className={s.selectors} >
+
+		 	<div className={s.inputs} >
+		 	<label htmlFor="population">Ordenar por poblacion </label>
 		 	<select 
 		 	id="population"
 		 	name="population"
@@ -64,8 +68,8 @@ const NavBar = () => {
 		 	</select>
 		 	</div>
 
-		 	<div>
-		 	<label htmlFor="alpha">Ordenar alfabeticamente</label>
+		 	<div className={s.inputs} >
+		 	<label htmlFor="alpha">Ordenar alfabeticamente </label>
 		 	<select 
 		 	name="alpha" 
 		 	id="alpha"
@@ -76,12 +80,12 @@ const NavBar = () => {
 		 	</select>
 		 	</div>
 
-		 	<div>
-		 	<SearchBar />
+		 	<div className={s.search} >
+		 	Buscar por nombre <SearchBar />
 		 	</div>
 
-		 	<div>
-		 	<label htmlFor="continent">Catalog by Continent</label>
+		 	<div className={s.inputs} >
+		 	<label htmlFor="continent">Catalog by Continent </label>
 		 	<select 
 		 	id="continent"
 		 	name="continent"
@@ -97,8 +101,8 @@ const NavBar = () => {
 		 	</select>
 		 	</div>
 
-		 	<div>
-		 	<label htmlFor="activity">Select activity</label>
+		 	<div className={s.inputs} >
+		 	<label htmlFor="activity" >Select activity </label>
 		 	<select 
 		 	name="activity" 
 		 	id="activity"
@@ -109,10 +113,12 @@ const NavBar = () => {
 		 		))} 
 		 	</select>
 		 	</div>
+		 	</div>
+		 	</div>
 
-		 	<div>
-		 	<p>If you have already traveled to earth and cannot find the activity, click here to create it...
-		 	<Link to="/activities" >Create new activity</Link>
+		 	<div className={s.linkActivity} >
+		 	<p>If you have already traveled to earth and cannot find the activity, click here to create it.. 
+		 	<Link className={s.link} to="/activities" >Create new activity</Link>
 		 	</p>
 		 	</div>
 		</div>

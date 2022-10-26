@@ -19,7 +19,6 @@ const initialState = {
 	FilContinents: [],
 	FilActivities: [],
 	order: [],
-	createActivity: [],
 	allActivities:[],
 	loading: false,
 	error: ''
@@ -30,6 +29,7 @@ const rootReducer = (state = initialState, action) => {
 		case GET_COUNTRIES:
 		return {
 			...state,
+			loading: false,
 			error:'',
 			allCountries: action.payload,
 			FilContinents: action.payload,
@@ -40,13 +40,14 @@ const rootReducer = (state = initialState, action) => {
 		case GET_DETAIL_COUNTRY:
 		return {
 			...state,
+			loading: false,
 			countryDetails: action.payload,
-			loading: false
 		};
 
 		case GET_COUNTRY_NAME:
 		return {
 			...state,
+			loading: false,
 			allCountries: action.payload,
 			error: ''
 		};
@@ -118,9 +119,8 @@ const rootReducer = (state = initialState, action) => {
 		case CREATE_ACTIVITY:
 		return {
 			...state,
-			createActivity: state.createActivity.push(action.payload)
+			loading: false
 		};
-
 
 		case LOADING:
 		return {

@@ -1,9 +1,35 @@
-.dir{
+.column2{
 	display: flex;
-	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
 }
 
-.dirr{
+.content {
 	display: flex;
 	flex-direction: column;
+	justify-content: space-between;
+}
+
+.gif{
+	border-radius: 50%;
+}
+
+
+
+
+
+.buttonPage{
+	margin: 4px 4px 0 4px;
+	background-color: chartreuse;
+	box-shadow: 0 5px aquamarine;
+	font-family: Papyrus, fantasy;
+}
+
+.buttonPage:hover{
+	background-color: mediumaquamarine;
+}
+
+.buttonPage:active{
+	padding: 3px;
+	box-shadow: 0 3px aqua;
 }

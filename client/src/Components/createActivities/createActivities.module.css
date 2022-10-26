@@ -1,0 +1,33 @@
+.create{
+	background-image: linear-gradient(mediumaquamarine, mediumspringgreen);
+	border-radius: 20px 0;
+	padding: 20px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+}
+
+activities.reduce((el, currentValue) => el.concat(currentValue)).map((el) => (
+	<div>
+	{el.name}
+	</div>
+))
+
+.code{
+	background-color: mediumaquamarine;
+	padding: 10px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	border-radius: 0 20px;
+}
+
+.cod{
+	margin: 10px;
+}
+
+.navActivity{
+	display: flex;
+	flex-direction: column;
+}
+

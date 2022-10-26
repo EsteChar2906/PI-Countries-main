@@ -1,0 +1,56 @@
+.nav {
+	display: flex;
+	flex-direction: column;
+}
+
+.busqueda {
+	display: flex;
+	flex-direction: row;
+	justify-content: legacy;
+}
+
+.inicio{
+	padding-top: 40px;
+	padding-right: 30px;
+	padding-left: 30px;
+	padding-bottom: 40px;
+	background-image: linear-gradient(aquamarine, chartreuse);
+	justify-content: center;
+	border-radius: 30% 0 0 0;
+}
+
+.inicio:hover{
+	background-image: linear-gradient(whitesmoke, aquamarine);
+}
+
+.link {
+	text-decoration: none;
+	color: black;
+	font-family: Papyrus, fantasy;
+}
+
+.selectors{
+	font-family: Papyrus, fantasy;
+	display: flex;
+	flex-direction: row;
+	padding: 20px 20px 0 20px;
+	background-image: linear-gradient(aquamarine, chartreuse);
+}
+
+.linkActivity{
+	font-family: Papyrus, fantasy;
+	background-color: chartreuse;
+	border-radius: 0 0 20% 0;
+}
+
+option {
+	font-family: Papyrus, fantasy;
+}
+
+.inputs{
+	margin: 10px;
+}
+
+.search{
+	margin-top: 40px;
+}

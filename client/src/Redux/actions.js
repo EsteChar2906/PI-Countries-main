@@ -13,6 +13,12 @@ import {
 	LOADING
 } from './actionsTypes.js'
 
+export const loading = () => {
+	return {
+		type: LOADING,
+	}
+}
+
 export const getCountries = () => {
 	return async function(dispatch){
 		try{

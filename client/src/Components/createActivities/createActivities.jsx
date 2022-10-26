@@ -1,23 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { createActivity, getCountries, getActivity } from '../../Redux/actions.js';
-
-
-const validate = (input) => {
-	let error = {};
-	if(!input.name){
-		error.name = "Se requiere un nombre"
-	}
-	return error;
-};
-
+import { createActivity, getCountries, getActivity, loading } from '../../Redux/actions.js';
+import { Link } from 'react-router-dom';
+import s from './createActivities.module.css';
 
 const NewActivity = () => {
 
 	const countries = useSelector((state) => state.allCountries);
+	const activities = useSelector((state) => state.allActivities);
+	const loadingi = useSelector((state) => state.loading);
 	const countriesOrdenadas = countries.sort((a, b) => a.name.localeCompare(b.name));
-
-	const [error, setError] = useState({});
 
 	const [ input, setInput] = useState({
 		name: '',
@@ -34,6 +26,7 @@ const NewActivity = () => {
 	}, [dispatch]);
 
 	useEffect(() => {
+		dispatch(loading())
 		dispatch(getActivity())
 	}, [dispatch]);
 
@@ -42,10 +35,6 @@ const NewActivity = () => {
 			...input,
 			[e.target.name]: e.target.value
 		})
-		setError(validate({
-			...input,
-			[e.target.name]: e.target.value
-		}))
 	};
 
 	const selectHandle = (id) => {
@@ -79,7 +68,7 @@ const NewActivity = () => {
 	const deleteHandle = (e) =>  {
 		setInput({
 			...input,
-			countries: input.countries.filter((c) => c !== e)
+			codeCountry: input.codeCountry.filter((c) => c !== e)
 		})
 	};
 
@@ -88,6 +77,8 @@ const NewActivity = () => {
 		dispatch(createActivity(input))
 
 		alert('Activity enviada')
+
+		dispatch(getActivity())
 
 		setInput({
 			name: '',
@@ -101,7 +92,7 @@ const NewActivity = () => {
 	const [ pagActual, setPagActual ] = useState(0);
 
 	let pagSiguiente = () => {
-		if(countries.length <= pagActual + 10) setPagActual(pagActual);
+		if(activities.length <= pagActual + 10) setPagActual(pagActual);
 
 		setPagActual(pagActual + 10);
 	};
@@ -114,13 +105,14 @@ const NewActivity = () => {
 
 	useEffect(() => {
 		setPagActual(0);
-	}, [countries]);
+	}, [activities]);
 	
 	return (
 
 		<div>
-		<div>
+		<div >
 		<form 
+		className={s.create}
 		onSubmit={submitHandle}
 		>
 
@@ -132,6 +124,7 @@ const NewActivity = () => {
 		name="name"
 		value={input.name}
 		onChange={handleChange}
+		required
 		 />
 		 </div>
 
@@ -142,7 +135,9 @@ const NewActivity = () => {
 		 value={input.difficulty}
 		 id="diff"
 		 onChange={difficultyHandle}
+		 required
 		 >
+		 <option value="" ></option>
 		 <option value={1}>1</option>
 		 <option value={2}>2</option>
 		 <option value={3}>3</option>
@@ -158,7 +153,9 @@ const NewActivity = () => {
 		 id="dura"
 		 value={input.duration}
 		 onChange={durationHandle}
+		 required
 		 >
+		 <option value="" ></option>
 		 <option value={1}>1</option>
 		 <option value={2}>2</option>
 		 <option value={3}>3</option>
@@ -183,7 +180,7 @@ const NewActivity = () => {
 		 <option value={22}>22</option>
 		 <option value={23}>23</option>
 		 <option value={24}>24</option>
-		 </select>
+		 </select>horas
 		 </div>
 
 		 <div>
@@ -193,7 +190,9 @@ const NewActivity = () => {
 		 id="season"
 		 value={input.season}
 		 onChange={seasonHandle}
+		 required
 		 >
+		 <option value="" ></option>
 		 <option value="Summer">Summer</option>
 		 <option value="Spring">Spring</option>
 		 <option value="Fall">Fall</option>
@@ -202,39 +201,47 @@ const NewActivity = () => {
 		 </div>
 
 		 <div>
-		 <label>Countries: </label>
-		 <select onChange={selectHandle} required >
-		 <option value="" hidden > Choose an country</option>
+		 <label htmlFor="codeCountry">Countries: </label>
+		 <select
+		 id="codeCountry"
+		 onChange={selectHandle} required >
+		 <option hidden ></option>
 		 {countriesOrdenadas.map((c) => (
-		 	<option value={c.id} name="codeCountry" key={c.id}>{c.name}</option>
+		 	<option value={c.id} name="codeCountry" key={c.name} unique="true" >{c.name}</option>
 		 	))}
 		 </select>
 
 		 </div>
 
-		 <div>
-		 <ul>
-		 <li>{
+		 
+		 <button type='submit'>Add new activity</button>
+		</form>
+
+		<div className={s.code} >{
 		 	input.codeCountry.map((e) => (
-		 		<div key={e}>
+		 		<div className={s.cod} id={e} key={e}>
 		 		{e}
 		 		<button type="button" onClick={() => deleteHandle(e)}>X</button>
 		 		</div>
 		 		))
 		 }
-		 </li>
-		 </ul>
 		 </div>
-		 <button type='submit'>Add new activity</button>
-		</form>
-		</div>
+		 </div>
+		 <div >
+		<div>{
+			loadingi? <img src="https://i.pinimg.com/originals/77/58/a8/7758a8ddaea8e34e58d407d8489940a0.gif" alt="" /> : 
+			activities.map((c) => (
+				<div key={c.id} >
+					<h4>{c.name}</h4>
+				</div>
+					))
+		}</div>
 
 		<button onClick={pagAnterior} > {'<--'} </button>
 		<button onClick={pagSiguiente}> {'-->'} </button>
-
+		</div>
 		</div>
 		);
-
 };
 
 export default NewActivity;

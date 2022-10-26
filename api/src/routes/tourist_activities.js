@@ -8,7 +8,7 @@ router.get("/", async(req, res) => {
 	
 	try{
 			const allActivities = await Tourist_Activities.findAll({
-				attributes: ["name", "difficulty", "season", "duration"],
+				attributes: ["id", "name", "difficulty", "season", "duration"],
 				include: {
 					model: Country,
 					through: {
