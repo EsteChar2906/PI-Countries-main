@@ -238,6 +238,7 @@ const NewActivity = () => {
 		}</div>
 
 		<button onClick={pagAnterior} > {'<--'} </button>
+		<button><Link to='/countries' >Back all Countries</Link> </button>
 		<button onClick={pagSiguiente}> {'-->'} </button>
 		</div>
 		</div>

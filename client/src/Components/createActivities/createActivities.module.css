@@ -7,11 +7,7 @@
 	justify-content: space-evenly;
 }
 
-activities.reduce((el, currentValue) => el.concat(currentValue)).map((el) => (
-	<div>
-	{el.name}
-	</div>
-))
+
 
 .code{
 	background-color: mediumaquamarine;
