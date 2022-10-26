@@ -33,7 +33,7 @@ const NewActivity = () => {
 	const handleChange = (e) => {
 		setInput({
 			...input,
-			[e.target.name]: e.target.value
+			name: e.target.value
 		})
 	};
 
@@ -74,9 +74,16 @@ const NewActivity = () => {
 
 	const submitHandle = (e) => {
 		e.preventDefault();
-		dispatch(createActivity(input))
-
-		alert('Activity enviada')
+		if(!input.name){
+			alert("debe ingresar una actividad")
+		} else {
+			if(input.name === input.name.toLowerCase()){
+				alert("El primer caracter del nombre de la actividad debe ser en mayusculas")
+			}else{
+				dispatch(createActivity(input))
+				alert('Activity enviada')
+			}
+		}
 
 		dispatch(getActivity())
 
@@ -231,8 +238,9 @@ const NewActivity = () => {
 		<div>{
 			loadingi? <img src="https://i.pinimg.com/originals/77/58/a8/7758a8ddaea8e34e58d407d8489940a0.gif" alt="" /> : 
 			activities.map((c) => (
-				<div key={c.id} >
+				<div className={s.card} key={c.id} >
 					<h4>{c.name}</h4>
+					<h5>{c.season}</h5>
 				</div>
 					))
 		}</div>
