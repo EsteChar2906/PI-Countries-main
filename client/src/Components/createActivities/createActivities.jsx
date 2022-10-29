@@ -30,24 +30,31 @@ const NewActivity = () => {
 		dispatch(getActivity())
 	}, [dispatch]);
 
-	const handleChange = (e) => {
+	/*const handleChange = (e) => {
 		setInput({
 			...input,
 			name: e.target.value
 		})
-	};
+	};*/
 
-	const selectHandle = (id) => {
-		setInput({
-			...input,
-			codeCountry: [...input.codeCountry, id.target.value]
-		})
+	const selectHandle = (e) => {
+		let code = input.codeCountry.find((el) => el === e.target.value);
+		if(!code){
+			setInput({
+				...input,
+				codeCountry: [...input.codeCountry, e.target.value]
+			})
+		}
 	};
 
 	const seasonHandle = (e) => {
 		setInput({
 			...input,
-			season: e.target.value
+			[e.target.season]: e.target.value
+		})
+		setInput({
+			...input,
+			[e.target.name]: e.target.value
 		})
 	};
 
@@ -83,17 +90,15 @@ const NewActivity = () => {
 				dispatch(createActivity(input))
 				alert('Activity enviada')
 			}
-		}
-
 		dispatch(getActivity())
-
 		setInput({
-			name: '',
-			difficulty: '',
-			duration: '',
-			season: '',
-			codeCountry: []
-		})
+					name: '',
+					difficulty: '',
+					duration: '',
+					season: '',
+					codeCountry: []
+				})
+		}
 	};
 
 	const [ pagActual, setPagActual ] = useState(0);
@@ -130,7 +135,7 @@ const NewActivity = () => {
 		placeholder="Name Activity..."
 		name="name"
 		value={input.name}
-		onChange={handleChange}
+		onChange={seasonHandle}
 		required
 		 />
 		 </div>
@@ -144,7 +149,7 @@ const NewActivity = () => {
 		 onChange={difficultyHandle}
 		 required
 		 >
-		 <option value="" ></option>
+		 <option value="" default ></option>
 		 <option value={1}>1</option>
 		 <option value={2}>2</option>
 		 <option value={3}>3</option>
@@ -162,7 +167,7 @@ const NewActivity = () => {
 		 onChange={durationHandle}
 		 required
 		 >
-		 <option value="" ></option>
+		 <option value="" default ></option>
 		 <option value={1}>1</option>
 		 <option value={2}>2</option>
 		 <option value={3}>3</option>
@@ -193,7 +198,7 @@ const NewActivity = () => {
 		 <div>
 		 <label htmlFor="season">Season: </label>
 		 <select 
-		 name="seson" 
+		 name="season" 
 		 id="season"
 		 value={input.season}
 		 onChange={seasonHandle}

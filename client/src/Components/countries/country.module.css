@@ -3,12 +3,12 @@
 	flex-direction: row;
 	border-style: solid;
 	border-width: medium;
-	border-radius: 10px;
+	border-radius: 20px;
 	border-color: lightblue;
 	margin: 30px;
 	padding-right: 30px;
-	width: 400px;
-	height: 180px;
+	width: 500px;
+	height: 230px;
 	background-image: linear-gradient(to bottom, aqua, chartreuse);
 }
 
@@ -29,6 +29,6 @@
 }
 
 .image {
-	margin-top: 50px;
-	margin-left: 80px;
+	margin: 15%;
+	border-radius: 50px;
 }

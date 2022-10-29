@@ -10,9 +10,9 @@ const Country = ({name, id, flag_image, continent }) =>{
 		        }}> {name} - {id}</Link></h3>
 		        <p className={s.text}><b>Continent: {continent}</b></p>
 		    </div>
-		    <div className={s.image}>
+		    <div >
 
-		        <img src={flag_image} alt="Bandera" />
+		        <img className={s.image} src={flag_image} alt="Bandera" width="80" height="40"/>
 		    
 		    </div>
 		</div>

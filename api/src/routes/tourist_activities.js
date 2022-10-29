@@ -26,25 +26,25 @@ router.get("/", async(req, res) => {
 router.post("/", async(req, res) => {
 	const { name, difficulty, duration, season, codeCountry } = req.body;
 	try{
-		const validateActivities = await Tourist_Activities.findOne({
-			where: {
-				name: name
-			}
-		});
 
 		if(!name || !difficulty || !duration || !season || !codeCountry){
 			return res.status(400).send("Faltan datos");
 		} else{
+			const validateActivities = await Tourist_Activities.findOne({
+			where: {
+				name: name
+			}
+		});
 			if(!validateActivities){
 				let activity = await Tourist_Activities.create({name, difficulty, duration, season});
 				await activity.setCountries(codeCountry)
 				
-					/*codeCountry.forEach(async (el) => {
-						const getByCode = await Country.findByPk(el);
-						activity.setCountry(getByCode);
-					});*/
+					
 			} else{
-					validateActivities.setCountries(codeCountry)
+					codeCountry.forEach(async (el) => {
+						const getByCode = await Country.findByPk(el);
+						validateActivities.addCountry(getByCode);
+					})
 			}
 
 			const countryActivity = await Tourist_Activities.findOne({
