@@ -15,7 +15,7 @@ module.exports = (sequelize) => {
       unique: true
     },
     flag_image: {
-      type: DataTypes.BLOB,
+      type: DataTypes.STRING,
       allowNull: false 
     },
     continent: {
