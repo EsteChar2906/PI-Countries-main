@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/countries/static/css/main.b4334a62.chunk.css",
+    "main.js": "/countries/static/js/main.2927e2c9.chunk.js",
+    "main.js.map": "/countries/static/js/main.2927e2c9.chunk.js.map",
+    "runtime-main.js": "/countries/static/js/runtime-main.92b97cfa.js",
+    "runtime-main.js.map": "/countries/static/js/runtime-main.92b97cfa.js.map",
+    "static/js/2.465114b4.chunk.js": "/countries/static/js/2.465114b4.chunk.js",
+    "static/js/2.465114b4.chunk.js.map": "/countries/static/js/2.465114b4.chunk.js.map",
+    "static/js/3.3fab2f3f.chunk.js": "/countries/static/js/3.3fab2f3f.chunk.js",
+    "static/js/3.3fab2f3f.chunk.js.map": "/countries/static/js/3.3fab2f3f.chunk.js.map",
+    "index.html": "/countries/index.html",
+    "static/css/main.b4334a62.chunk.css.map": "/countries/static/css/main.b4334a62.chunk.css.map",
+    "static/js/2.465114b4.chunk.js.LICENSE.txt": "/countries/static/js/2.465114b4.chunk.js.LICENSE.txt",
+    "static/media/landingPage.module.css": "/countries/static/media/Portada.ca085855.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.92b97cfa.js",
+    "static/js/2.465114b4.chunk.js",
+    "static/css/main.b4334a62.chunk.css",
+    "static/js/main.2927e2c9.chunk.js"
+  ]
+}
