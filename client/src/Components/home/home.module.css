@@ -1,6 +1,7 @@
 .items{
 	display: flex;
-	flex-direction: column
+	flex-direction: column;
+	background-color:blanchedalmond ;
 }
 
 

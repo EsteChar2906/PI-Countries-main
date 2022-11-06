@@ -3,8 +3,13 @@
 	margin-right: 25%;
 	padding-bottom: 10px;
 	border-radius: 20px;
-	font-family: Papyrus, fantasy;
-	background-image: linear-gradient(chartreuse, cyan) ;
+	font-family: Didot, Didot LT STD, Hoefler Text, Garamond, Calisto MT, Times New Roman, serif;
+	font-size: 20px;
+	background-color: mintcream;
+}
+
+.back{
+	background-color: blanchedalmond;
 }
 
 .title {
@@ -28,9 +33,10 @@
 }
 
 .cardActivity{
-	background-image: linear-gradient(greenyellow, lawngreen);
+	background-color: aquamarine;
 	margin: 15px;
 	padding: 10px;
+	border-radius: 20%;
 	
 }
 
@@ -40,7 +46,7 @@
 }
 
 .bandera{
-	margin-top: 30px;
+	margin-top: 80px;
 	margin-right: 10px;
 }
 
@@ -49,7 +55,7 @@
 }
 
 .buttons{
-	background-image: linear-gradient(tomato, turquoise);
+	background-color: white;
 	padding: 10px;
 	margin: 10px;
 	border-radius: 20px;
@@ -57,11 +63,11 @@
 }
 
 .buttons:hover{
-	background-image: linear-gradient(turquoise, tomato);
+	background-color: turquoise;
 }
 
 .links{
-	background-image: linear-gradient(springgreen, teal);
+	background-color: aquamarine;
 	display: flex;
 	flex-direction: row;
 	justify-content: space-around;

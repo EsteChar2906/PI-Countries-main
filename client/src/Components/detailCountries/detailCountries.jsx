@@ -22,24 +22,14 @@ const DetailCountries = () => {
 
 
 	return (
-		<div>
+		<div className={s.back}>
 		{loadingif? <img className={s.gif} src="https://i.pinimg.com/originals/77/58/a8/7758a8ddaea8e34e58d407d8489940a0.gif" alt="cargando..." /> :
 			<div>
 			<div className={s.fondo}>
 			<div className={s.title} >
 			<div>
 			<h1>{detail.name}</h1>
-			</div>
-			<div className={s.bandera} >
-		      <img src={detail.flag_image} alt="bandera" />
-		     </div>
-			</div>
-
-		<div className={s.detail} >
-
-		<div>
-
-		<h3 className={s.center} >Country details: </h3>
+			<div>
 		
 		<p><b>Continent:</b> {detail.continent}</p>
 		<p><b>Capital:</b> {detail.capital}</p>
@@ -47,9 +37,14 @@ const DetailCountries = () => {
 		<p><b>Area:</b> {detail.area} Km<sup>2</sup></p>
 		<p><b>Population:</b> {detail.population} Hab</p>
 
-
 		</div>
+			</div>
+			<div className={s.bandera} >
+		      <img src={detail.flag_image} alt="bandera" />
+		     </div>
+			</div>
 
+		<div className={s.detail} >
 		<div>
 		<h3 className={s.center} >Activities:</h3>
 		<div className={s.activities} >
