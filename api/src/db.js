@@ -2,9 +2,7 @@ require('dotenv').config();
 const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
-const {
-  DB_URL
-} = require('../config.js')
+const DB_URL = require('../config.js')
 
 
 const sequelize = new Sequelize(DB_URL, {
