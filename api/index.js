@@ -19,12 +19,13 @@
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
-const { dataBase } = require('./src/dataBaseAxios/dataBaseAxios.js')
+const { dataBase } = require('./src/dataBaseAxios/dataBaseAxios.js');
+const { PORT } = require('./config.js');
 
 // Syncing all the models at once.
 conn.sync({ force: true }).then(() => {
-  server.listen(3001, () => {
+  server.listen(PORT, () => {
     dataBase();
-    console.log('%s listening at 3001'); // eslint-disable-line no-console
+    console.log(`%s listening at ${PORT}`); // eslint-disable-line no-console
   });
 });
