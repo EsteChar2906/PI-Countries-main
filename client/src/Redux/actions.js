@@ -22,7 +22,7 @@ export const loading = () => {
 export const getCountries = () => {
 	return async function(dispatch){
 		try{
-			const response = await axios.get("http://localhost:3001/countries/")
+			const response = await axios.get("https://pi-countries-main-production-3a25.up.railway.app/countries/")
 			dispatch({
 				type: GET_COUNTRIES,
 				payload: response.data
@@ -40,7 +40,7 @@ export const getDetailCountry = (id) => {
 	return async function(dispatch){
 		try{
 
-			const response = await axios.get(`http://localhost:3001/countries/${id}`);
+			const response = await axios.get(`https://pi-countries-main-production-3a25.up.railway.app/countries/${id}`);
 		    dispatch({
 		    	type: GET_DETAIL_COUNTRY,
 		    	payload: response.data
@@ -54,7 +54,7 @@ export const getDetailCountry = (id) => {
 export const getCountryName = (name) => {
 	return async function(dispatch){
 		try{
-		    const response = await axios.get(`http://localhost:3001/countries?name=${name}`);
+		    const response = await axios.get(`https://pi-countries-main-production-3a25.up.railway.app/countries?name=${name}`);
 		    dispatch({
 		    	type: GET_COUNTRY_NAME,
 		    	payload: response.data
@@ -71,7 +71,7 @@ export const getCountryName = (name) => {
 export const getActivity = () => {
 	return async function(dispatch){
 		try{
-			const response = await axios.get(`http://localhost:3001/activities`);
+			const response = await axios.get(`https://pi-countries-main-production-3a25.up.railway.app/activities`);
 			dispatch({
 				type: GET_ACTIVITY,
 				payload: response.data
@@ -117,7 +117,7 @@ export const ordByPopul = (payload) => {
 export const createActivity = (activity) => {
 	return async function(dispatch){
 		try{
-		    const create = await axios.post('http://localhost:3001/activities', activity);
+		    const create = await axios.post('https://pi-countries-main-production-3a25.up.railway.app/activities', activity);
 		    dispatch({
 		    type: CREATE_ACTIVITY,
 		    payload: create.data
