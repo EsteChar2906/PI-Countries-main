@@ -19,7 +19,7 @@
   "homepage":"https://pi-countries-main-z7p6.vercel.app/",
   "scripts": {
     "start": "react-scripts start",
-    "predeploy": "npm run build",
+    /*"predeploy": "npm run build",*/
     "build":"react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
