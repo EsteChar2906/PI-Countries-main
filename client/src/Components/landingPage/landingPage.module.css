@@ -23,7 +23,7 @@
 .home {
 	display: flex;
 	flex-direction: column;
-	background-image: url("C:\Users\usuario\Desktop\Desarollo-web\Carrera Desarrolo web\PI Countries\PI-Countries-main\client\src\Imagen de fondo\Portada.jpg");
+	background-image: linear-gradient(lightskyblue, lightseagreen);
 	background-size: 100%;
 	background-attachment: scroll;
 	letter-spacing: 1px;
