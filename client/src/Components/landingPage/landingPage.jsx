@@ -8,7 +8,7 @@ const LandingPage = () => {
 		<div className={s.home}>
     		<div className={s.text} >
         		<h1 >Cansado de tú planeta</h1>
-              		<p><b> Explora esta aplicacion donde podras ver los diferentes paises que existen en en el Planeta Tierra. Viaja y descubre sus destinos turisticos. Anímate, tal véz, quieras conquistarla. Haz click aqui 
+              		<p><b> Explora esta aplicacion donde podras ver los diferentes paises que existen en el Planeta Tierra. Viaja y descubre sus destinos turisticos. Anímate, tal véz, quieras conquistarla. Haz click aqui 
             		<Link to="/countries"><button type="autofocus" className={s.buttonHome}> 	EXPLORE </button></Link> </b>
             		</p>
     		</div>
